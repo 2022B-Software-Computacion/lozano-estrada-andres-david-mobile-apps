@@ -103,7 +103,7 @@ fun main() {
 
 
     // Filter -> FILTRAR EL ARREGLO
-    // 1) Devolcer una expresión (TRUE o FALSE)
+    // 1) Devolver una expresión (TRUE o FALSE)
     // 2) Nuevo arreglo filtrado
     val respuestaFilter: List<Int> = arregloDinamico
         .filter {valorActual: Int ->
