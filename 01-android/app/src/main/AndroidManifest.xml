@@ -13,6 +13,20 @@
         android:theme="@style/Theme.Adle"
         tools:targetApi="31">
         <activity
+            android:name=".GRecycleView"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ECrudEntrenador"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".CIntentExplicitoParametros"
             android:exported="false">
             <meta-data

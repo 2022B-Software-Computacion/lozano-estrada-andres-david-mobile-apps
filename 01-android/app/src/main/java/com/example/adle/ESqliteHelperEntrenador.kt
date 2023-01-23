@@ -37,7 +37,7 @@ class ESqliteHelperEntrenador(
         val valoresAGuardar = ContentValues()
 
         valoresAGuardar.put("nombre", nombre)
-        valoresAGuardar.put(descripcion, descripcion)
+        valoresAGuardar.put("descripcion", descripcion)
 
         val resultadoGuardar = baseDatosEscritura
             .insert(
@@ -50,7 +50,7 @@ class ESqliteHelperEntrenador(
         return resultadoGuardar.toInt() != -1
     }
 
-    fun eliminarEntrenadosFormulario(id: Int): Boolean {
+    fun eliminarEntrenadorFormulario(id: Int): Boolean {
         val conexionEscritura = writableDatabase
         val resultadoEliminacion = conexionEscritura
             .delete(
