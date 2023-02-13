@@ -90,6 +90,24 @@ class MainActivity : AppCompatActivity() {
             .setOnClickListener {
                 irActividad(ECrudEntrenador::class.java)
             }
+
+        val botonRecyclerView = findViewById<Button>(R.id.btn_recycler_view)
+        botonRecyclerView
+            .setOnClickListener {
+                irActividad(GRecycleView::class.java)
+            }
+
+        val botonMaps = findViewById<Button>(R.id.btn_google_maps)
+        botonMaps
+            .setOnClickListener{
+                irActividad(HGoogleMapsActivity::class.java)
+            }
+
+        val botonFirebaseUIAuth = findViewById<Button>(R.id.btn_intent_firebase_uiauth)
+        botonFirebaseUIAuth
+            .setOnClickListener {
+                irActividad(IFirebaseUIAuth::class.java)
+            }
     }
 
     fun abrirActividadConParametros(
