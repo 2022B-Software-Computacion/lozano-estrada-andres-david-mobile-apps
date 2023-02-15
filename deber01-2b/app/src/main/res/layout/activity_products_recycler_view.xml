@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bk_white" >
 
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -89,36 +90,22 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <!-- Products recycler view -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_products"
         android:layout_width="match_parent"
-        android:layout_height="580dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_height="625dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/cl_results" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/resultados"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/rv_products"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
-
+    <!-- Filters scroll buttons -->
     <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="334dp"
+        android:id="@+id/hsv_filters"
+        android:layout_width="335dp"
         android:layout_height="wrap_content"
         android:scrollbars="none"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/btn_filter"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <LinearLayout
@@ -133,33 +120,37 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="@string/oferta_del_d_a"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_button"
-                android:textAllCaps="false" />
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/mejores_ofertas_del_d_a"
+                android:textAllCaps="false"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <Button
+                android:id="@+id/btn_minus_of_500"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="@string/menos_de_500"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_button"
-                android:textAllCaps="false" />
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/menos_de_500"
+                android:textAllCaps="false"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <ImageButton
+                android:id="@+id/btn_4_stars"
                 android:layout_width="80dp"
                 android:layout_height="30dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/amazon_stars_4_only"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_button"
-                android:contentDescription="@string/cuatro_estrellas_filtro" />
+                android:contentDescription="@string/cuatro_estrellas_filtro"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/amazon_stars_4_only" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -174,17 +165,130 @@
 
     </HorizontalScrollView>
 
+    <!-- Filter additional button -->
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_filter"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="@color/bk_white"
+        android:layout_height="50dp"
         android:text="@string/filtros"
         android:textAllCaps="false"
         android:textColor="#367376"
-        app:layout_constraintBottom_toBottomOf="@+id/horizontalScrollView"
+        android:background="@drawable/filter_button_border"
+        app:layout_constraintBottom_toBottomOf="@+id/hsv_filters"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/horizontalScrollView"
-        app:layout_constraintTop_toTopOf="@+id/horizontalScrollView" />
+        app:layout_constraintStart_toEndOf="@+id/hsv_filters"
+        app:layout_constraintTop_toTopOf="@+id/hsv_filters" />
+
+    <!-- Results text -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_results"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginTop="-85dp"
+        app:layout_constraintBottom_toTopOf="@+id/rv_products"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hsv_filters">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/filter_scroll_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/resultados"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12.5dp"
+                app:layout_constraintBottom_toTopOf="@+id/rv_products"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hsv_filters" />
+
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Footer buttons -->
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/filter_scroll_border"
+        android:paddingTop="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/image_btn_home"
+                android:layout_width="108dp"
+                android:layout_height="0dp"
+                android:background="@color/bk_white"
+                android:src="@drawable/home_selected"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/home_button" />
+
+            <ImageButton
+                android:id="@+id/image_btn_user"
+                android:layout_width="108dp"
+                android:layout_height="0dp"
+                android:background="@color/bk_white"
+                android:src="@drawable/user"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_btn_home"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/home_button" />
+
+            <ImageButton
+                android:id="@+id/image_btn_car"
+                android:layout_width="108dp"
+                android:layout_height="0dp"
+                android:background="@color/bk_white"
+                android:src="@drawable/car"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_btn_user"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/user_button" />
+
+            <ImageButton
+                android:id="@+id/image_btn_settings"
+                android:layout_width="108dp"
+                android:layout_height="0dp"
+                android:background="@color/bk_white"
+                android:src="@drawable/settings"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_btn_car"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/settings_button" />
+
+            <TextView
+                android:id="@+id/tv_car_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11.25dp"
+                android:layout_marginStart="3dp"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/image_btn_car"
+                app:layout_constraintStart_toEndOf="@+id/image_btn_user"
+                app:layout_constraintTop_toTopOf="@+id/image_btn_car" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

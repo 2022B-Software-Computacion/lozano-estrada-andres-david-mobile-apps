@@ -14,4 +14,17 @@
     <string name="electr_nica">Electrónica</string>
     <string name="cuatro_estrellas_filtro">cuatro estrellas filtro</string>
     <string name="filtros">Filtros ᐯ</string>
+    <string name="mejores_ofertas_del_d_a">Mejores ofertas del día</string>
+    <string name="home_button">Home button</string>
+    <string name="user_button">user button</string>
+    <string name="settings_button">settings button</string>
+    <string name="enviar_a_ecuador">Enviar a Ecuador ᐯ</string>
+    <string name="relacionado_con_productos_que_has_visto_ltimamente">Relacionado con productos que has visto últimamente</string>
+    <string name="neque_porro_quisquam_est_qui_dolorem_ipsum_quia_dolor_sit_amet_consectetur_adipisci_velit">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</string>
+    <string name="disponible">Disponible</string>
+    <string name="comparar_con_art_culos_similares">Comparar con artículos similares</string>
+    <string name="guardar_para_m_s_tarde">Guardar para más tarde</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="_1">1</string>
+    <string name="subtotal">Subtotal</string>
 </resources>

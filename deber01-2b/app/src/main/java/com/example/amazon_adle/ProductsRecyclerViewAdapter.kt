@@ -1,5 +1,6 @@
 package com.example.amazon_adle
 
+import android.annotation.SuppressLint
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
@@ -36,6 +37,16 @@ class ProductsRecyclerViewAdapter(
         }
     }
 
+    interface OnButtonClickListener {
+        fun onButtonClicked(selectedProduct: Product)
+    }
+
+    private var buttonClickListener: OnButtonClickListener? = null
+
+    fun setOnButtonClickListener(listener: OnButtonClickListener) {
+        this.buttonClickListener = listener
+    }
+
     // Product layout setting
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater
@@ -48,6 +59,7 @@ class ProductsRecyclerViewAdapter(
         return MyViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentProduct = this.list[position]
         val oldPriceStr = "US$" + String.format(
@@ -88,6 +100,11 @@ class ProductsRecyclerViewAdapter(
         // Shipping
         if(!currentProduct.shippingToEcuador)
             holder.shippingTextView.text = "Sin envíos a Ecuador"
+
+        // Setting add to car action
+        holder.imageImageView.setOnClickListener {
+            buttonClickListener?.onButtonClicked(this.list[position])
+        }
     }
 
     override fun getItemCount(): Int {
