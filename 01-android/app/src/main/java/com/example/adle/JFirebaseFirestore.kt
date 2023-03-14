@@ -55,6 +55,11 @@ class JFirebaseFirestore : AppCompatActivity() {
 
         val botonFirebaseEmpezarPaginar = findViewById<Button>(R.id.btn_fs_epaginar)
         botonFirebaseEmpezarPaginar.setOnClickListener { query = null; consultarCiudades(adaptador) }
+
+        val botonFirebasePaginar = findViewById<Button>(R.id.btn_fs_paginar)
+        botonFirebasePaginar.setOnClickListener {
+            consultarCiudades(adaptador)
+        }
     }
 
     fun consultarCiudades(
@@ -71,6 +76,28 @@ class JFirebaseFirestore : AppCompatActivity() {
         }
         else {
             tarea = query!!.get()   // consulta de la consulta anterior empezando en le nuevo documento
+        }
+
+        if (tarea != null) {
+            tarea
+                .addOnSuccessListener { documentSnapshots ->
+                    guardarQuery(documentSnapshots, citiesRef)
+                    for (ciudad in documentSnapshots) {
+                        anadirArregloCiudad(arreglo, ciudad, adaptador)
+                    }
+                    adaptador.notifyDataSetChanged()
+                }
+                .addOnFailureListener{
+                    // si hay fallos
+                }
+        }
+    }
+
+    fun guardarQuery(documentSnapshot: QuerySnapshot, refCities: Query) {
+        if (documentSnapshot.size() > 0) {
+            val ultimoDocumento = documentSnapshot.documents[documentSnapshot.size() - 1]
+            query = refCities
+                .startAfter(ultimoDocumento)
         }
     }
 
@@ -191,7 +218,7 @@ class JFirebaseFirestore : AppCompatActivity() {
         citiesRefUnico
             // NO USAMOS CON DOCUMENT xq en DOCUMENT nos devuelve 1
             // /cities => "population" ASCENDING
-            .orderBy("population", com.google.firebase.firestore.Query.Direction.ASCENDING)
+            .orderBy("population", Query.Direction.ASCENDING)
             .get()  // obtenemos la petición
             .addOnSuccessListener {
                 for (ciudad in it) {
@@ -266,7 +293,7 @@ class JFirebaseFirestore : AppCompatActivity() {
         val nuevaCiudad = JCitiesDto(
             ciudad.data.get("name") as String?,
             ciudad.data.get("state") as String?,
-            ciudad.data.get("cpuntry") as String?,
+            ciudad.data.get("country") as String?,
             ciudad.data.get("capital") as Boolean?,
             ciudad.data.get("population") as Long?,
             ciudad.data.get("regions") as ArrayList<String>
